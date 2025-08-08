@@ -1,7 +1,7 @@
 package com.hichinfo.employees.controller;
 
-import com.hichinfo.employees.dao.EmployeeDAO;
 import com.hichinfo.employees.entity.Employee;
+import com.hichinfo.employees.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +16,16 @@ import java.util.List;
 public class EmployeeRestController {
 
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeService employeeService;
     @Autowired
-    public EmployeeRestController(EmployeeDAO theEmployeeDAO) {
-        employeeDAO = theEmployeeDAO;
+    public EmployeeRestController(EmployeeService theEmployeeService) {
+        employeeService = theEmployeeService;
     }
 
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Employee> findAll(){
-        return employeeDAO.findAll();
+        return employeeService.findAll();
     }
 }
